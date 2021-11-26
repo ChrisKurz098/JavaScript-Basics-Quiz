@@ -45,11 +45,11 @@ function startQuiz(questionArray) {
 
     }, 1000);
 
-    drawQuestion(questionArray);
+    drawQuestion(questionArray,0);
 }
 ///////////////Displays the questions and choices and waits for input
-function drawQuestion(array) {
-    let questionNumber = 0;
+function drawQuestion(array,questionNum) {
+    let questionNumber = questionNum;
     const quizCard = document.getElementById("quizCard");
     const questionEl = document.getElementById("questionText");
     const codeEl = document.getElementById("codeText");
@@ -74,6 +74,8 @@ function drawQuestion(array) {
         
         if (selectedChoiceEl.dataset.choice === array[questionNumber].correct) {
             alert("Correct");
+            questionNumber++;
+            drawQuestion(array,questionNumber);
         }
         else {
             alert("Wrong");
