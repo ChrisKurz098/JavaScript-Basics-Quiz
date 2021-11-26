@@ -17,11 +17,27 @@
 
 
     <section id="mainCard">
-        <!--Here we will add div elements which we can completeley remove to display different cards
-        -Start Card: Has the start button
-        -Quiz Card: Updates for each question
-        -Finoish Card: Displays finish/times up with an input for high score if applicable
-        -->
+        <div id="startCard">
+            <h2>Javascript Basics Quiz</h2>
+            <h3>Please press START to begin your quiz!</h3>
+            <button id = "startButton">START</button>
+        </div>
+
+      <div id = "quizCard">
+          <h2>Question....</h2>
+          <p id="codeBlock">Code ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode ExampleCode Example</p>
+          <ol id="buttons" type = A>
+              <li data-list-number='A'> Answer 1</li>
+              <li data-list-number='B'> Answer 2</li>
+              <li data-list-number='C'> Answer 3</li>
+              <li data-list-number='D'> Answer 4</li>
+          </ol>
+          <h3 id="checkAnswer">Correct or Not</h3>
+      </div>
+
+      <div id="finishCard">
+            Will display TIMES UP or Congrats on finishing with high score input if applicable
+    </div>
     </section>
 
     <script src="./assets/js/script.js"></script>
