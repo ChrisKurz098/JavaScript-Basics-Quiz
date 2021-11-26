@@ -45,12 +45,32 @@ function startQuiz(questionArray) {
 
     }, 1000);
 
-    getQuestion(questionArray);
+    drawQuestion(questionArray);
 }
 ///////////////Displays the questions and choices and waits for input
-function getQuestion(array){
-    questionNumber =0;
+function drawQuestion(array){
+ let   questionNumber =0;
+const quizCard = document.getElementById("quizCard");
+const questionEl = document.getElementById("questionText");
+const codeEl = document.getElementById("codeText");
+const choiceA = document.getElementById("answerA");
+const choiceB = document.getElementById("answerB");
+const choiceC = document.getElementById("answerC");
+const choiceD = document.getElementById("answerD");
 
+questionEl.textContent = array[questionNumber].question;
+codeEl.textContent = array[questionNumber].code;
+choiceA.textContent = array[questionNumber].choiceA;
+choiceB.textContent = array[questionNumber].choiceB;
+choiceC.textContent = array[questionNumber].choiceC;
+choiceD.textContent = array[questionNumber].choiceD;
+function checkAnswer(event){
+    const element = event.taget;
+    console.log(element);
+    if (element.dataset.choiceNumber === array[questionNumber].correct)
+    {alert("Correct")} else {alert("Wrong")}
+    
+}
 }
 
 function drawFinishCard(completed) {
@@ -61,4 +81,7 @@ function drawFinishCard(completed) {
 
 
 document.getElementById("startButton").addEventListener("click",initQuestions);
+
+//check if an answer is being clicked
+document.getElementById("choiceButtons").addEventListener("click",checkAnswer);
 
