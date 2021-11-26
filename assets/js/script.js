@@ -67,7 +67,19 @@ function drawQuestion(array) {
     choiceC.textContent = array[questionNumber].choiceC;
     choiceD.textContent = array[questionNumber].choiceD;
 
-    
+    buttonsEl.addEventListener("click", function (event) {
+        console.log(event);
+        let selectedChoiceEl = event.target;
+        console.log(selectedChoiceEl);
+        
+        if (selectedChoiceEl.dataset.choice === array[questionNumber].correct) {
+            alert("Correct");
+        }
+        else {
+            alert("Wrong");
+        }
+
+    });
 
 }
 
