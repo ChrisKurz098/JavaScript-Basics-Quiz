@@ -1,6 +1,8 @@
 document.getElementById("quizCard").style.display = "none";
 document.getElementById("finishCard").style.display = "none";
 
+document.getElementById("startButton").addEventListener("click", initQuestions);
+
 function initQuestions() {
     array = [
         {
@@ -56,7 +58,7 @@ function initQuestions() {
 
 ///////////////Here is the main game logic////////////
 function startQuiz(questionArray) {
-    
+
     //hide startCard element
     document.getElementById("startCard").style.display = "none";
     document.getElementById("finishCard").style.display = "none";
@@ -66,6 +68,18 @@ function startQuiz(questionArray) {
     let timerDisplay = document.getElementById("timerDisplay");
     timerDisplay.textContent = "Time: " + time;
 
+    //define  all of the quizCard elements
+    const quizCard = document.getElementById("quizCard");
+    const questionEl = document.getElementById("questionText");
+    const codeEl = document.getElementById("codeText");
+    const choiceA = document.getElementById("answerA");
+    const choiceB = document.getElementById("answerB");
+    const choiceC = document.getElementById("answerC");
+    const choiceD = document.getElementById("answerD");
+    const result = document.getElementById("result");
+    const buttonsEl = document.getElementById("choiceButtons");
+
+    //start timer
     let timer = setInterval(function () {
         time--;
         timerDisplay.textContent = "Time: " + time;
@@ -77,26 +91,18 @@ function startQuiz(questionArray) {
 
     }, 1000);
 
-    drawQuestion(questionArray, 0);
 
+    runQuestions(questionArray, 0);
     ///////////////Displays the questions and choices and waits for input
-    function drawQuestion(array, questionNum) {
-        if (questionNum >= array.length) {
+    function runQuestions(array, questionNum) {
+        //if we have passed the last question, go to finishCard and return from function
+        if (questionNum > array.length - 1) {
             clearInterval(timer);
-            drawFinishCard(true, time,numCorrect);
+            drawFinishCard(true, time, numCorrect);
             return;
         }
-        const quizCard = document.getElementById("quizCard");
-        const questionEl = document.getElementById("questionText");
-        const codeEl = document.getElementById("codeText");
-        const choiceA = document.getElementById("answerA");
-        const choiceB = document.getElementById("answerB");
-        const choiceC = document.getElementById("answerC");
-        const choiceD = document.getElementById("answerD");
-        const result = document.getElementById("result");
-        const buttonsEl = document.getElementById("choiceButtons");
 
-        //display all new element text
+        //display all new element text for current question
         questionEl.textContent = array[questionNum].question;
         codeEl.textContent = array[questionNum].code;
         choiceA.textContent = array[questionNum].choiceA;
@@ -104,23 +110,24 @@ function startQuiz(questionArray) {
         choiceC.textContent = array[questionNum].choiceC;
         choiceD.textContent = array[questionNum].choiceD;
 
-        console.log("number of questions: " + array.length);
-        console.log("question Number: " + questionNum);
+
         //listen for button click then run check function
-        buttonsEl.addEventListener("pointerup", function (event) {
+        buttonsEl.addEventListener("pointerup", function checkAnswer(event) {
+            //remove event listener so that when the function runs again, the event listsner isn't duplicated
+            buttonsEl.removeEventListener("pointerup", checkAnswer);
             let selectedChoiceEl = event.target;
 
             if (selectedChoiceEl.dataset.choice === array[questionNum].correct) {
                 questionNum++;
                 numCorrect++;
                 result.textContent = "Correct";
-                drawQuestion(array, questionNum);
+                runQuestions(array, questionNum);
                 return;
             }
             else {
                 questionNum++;
                 result.textContent = "Wrong";
-                drawQuestion(array, questionNum);
+                runQuestions(array, questionNum);
                 return;
             }
 
@@ -130,20 +137,20 @@ function startQuiz(questionArray) {
 }
 
 ////Print  results to screan
-function drawFinishCard(completed, score,numCorrect) {
+function drawFinishCard(completed, score, numCorrect) {
 
     document.getElementById("startCard").style.display = "none";
     document.getElementById("quizCard").style.display = "none";
     document.getElementById("finishCard").style.display = "block";
 
     const finishEl = document.getElementById("finishCard");
-    const bonus = (numCorrect*5);
-    const finalScore = (score+bonus)
+    const bonus = (numCorrect * 5);
+    const finalScore = (score + bonus)
     finishEl.style.whiteSpace = "pre";
     if (completed) {
-        finishEl.textContent = "Your Time: " + score + 
-        "\nCorrect Answer Bonus: " + (bonus) +
-        "\nFinal Score: " + finalScore;
+        finishEl.textContent = "Your Time: " + score +
+            "\nCorrect Answer Bonus: " + (bonus) +
+            "\nFinal Score: " + finalScore;
 
         //check for highscore
         //if highscore ask for initials
@@ -155,7 +162,7 @@ function drawFinishCard(completed, score,numCorrect) {
 }
 
 
-document.getElementById("startButton").addEventListener("click", initQuestions);
+
 
 //check if an answer is being clicked
 
