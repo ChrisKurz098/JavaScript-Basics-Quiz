@@ -1,9 +1,24 @@
 document.getElementById("quizCard").style.display = "none";
 document.getElementById("finishCard").style.display = "none";
 
+getHighScore();
 document.getElementById("startButton").addEventListener("click", initQuestions);
 
+
+function getHighScore() {
+    initHighScore();
+    let scoreData = loadHighScore();
+    let topName = scoreData.name;
+    let topScore = scoreData.score;
+
+    document.getElementById("highScoreDisplay").textContent = "Current Leader: " + topName + " with a score of " + topScore;
+}
+
+
+
 function initQuestions() {
+    // initiate a JSON key if one doesnt exist
+
     array = [
         {
             question: "Here is question 1 [B]",
@@ -143,27 +158,75 @@ function drawFinishCard(completed, score, numCorrect) {
     document.getElementById("quizCard").style.display = "none";
     document.getElementById("finishCard").style.display = "block";
 
+
+
     const finishEl = document.getElementById("finishCard");
     const bonus = (numCorrect * 5);
     const finalScore = (score + bonus)
     finishEl.style.whiteSpace = "pre";
+
+    let currentHighScore = loadHighScore();
+    let scoreToBeat = currentHighScore.score;
+    console.log(scoreToBeat);
+    let checkScore = checkHighScore(finalScore, currentHighScore);
+
     if (completed) {
         finishEl.textContent = "Your Time: " + score +
             "\nCorrect Answer Bonus: " + (bonus) +
-            "\nFinal Score: " + finalScore;
-
-        //check for highscore
-        //if highscore ask for initials
-        //save high score
+            "\nFinal Score: " + finalScore +
+            "\nHighScore: " + scoreToBeat;
     }
     else {
         finishEl.textContent = "Sorry, but your time ran out!"
+        return;
+    }
+
+    if (checkScore) {
+        //display high score input screen
+        return;
     }
 }
 
 
 
+////////////////////////////////////////High Score Code////////////////////////////////////////
 
-//check if an answer is being clicked
+function initHighScore() {
+    checkIfHighScore = localStorage.getItem("highScore")
+    console.log(checkIfHighScore);
+    if (!checkIfHighScore) {
+        defaultScore = {
+            name: "CK",
+            score: 50
+        };
+        localStorage.setItem("highScore", JSON.stringify(defaultScore));
+        console.log(checkIfHighScore);
+    }
+    return;
+}
+
+/////////////////LOAD SCORE FUNCTION/////////////////////////////
+function loadHighScore() {
+    let currentHighScore = localStorage.getItem("highScore")
+    currentHighScore = JSON.parse(currentHighScore);
+    return currentHighScore;
+}
+/////////////////SAVE SCROE FUNCTION/////////////////////////////
+function saveHighScore(newHighScore) {
+    localStorage.setItem("highScore", JSON.stringify(newHighScore));
+}
+
+function checkHighScore(finalScore, currentHighScore) {
+    if (finalScore < currentHighScore) {
+        return false;
+    }
+    return true;
+}
+
+////JSON key is highScore
+////highScore contains obj with name and score (highScore.name and highScore.score)
+
+
+
 
 
