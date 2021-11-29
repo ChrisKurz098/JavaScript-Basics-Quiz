@@ -82,6 +82,7 @@ function startQuiz(questionArray) {
     let time = 60;
     let timerDisplay = document.getElementById("timerDisplay");
     timerDisplay.textContent = "Time: " + time;
+    
 
     //define  all of the quizCard elements
     const quizCard = document.getElementById("quizCard");
@@ -105,13 +106,14 @@ function startQuiz(questionArray) {
         }
 
     }, 1000);
-
+    timerDisplay.style.animation = "colorPulseRed .5s linear .5s infinite alternate"
 
     runQuestions(questionArray, 0);
     ///////////////Displays the questions and choices and waits for input
     function runQuestions(array, questionNum) {
         //if we have passed the last question, go to finishCard and return from function
         if (questionNum > array.length - 1) {
+            timerDisplay.style.animation = "none";
             clearInterval(timer);
             drawFinishCard(true, time, numCorrect);
             return;
@@ -184,6 +186,7 @@ function drawFinishCard(completed, score, numCorrect) {
     }
 
     if (checkScore) {
+        
         askForName(finalScore, element);
         //display high score input screen
     }
@@ -222,18 +225,20 @@ function saveHighScore(newHighScore) {
 ///////////////New highscore input//////////////////////////////
 function askForName(newScore, element) {
     //create new dif to handle eventListener "submit"
-    const inputFormEl = document.createElement("form");
+    let inputFormEl = document.createElement("form");
     inputFormEl.className = "userInputForm";
-    inputFormEl.textContent = "You Have The New Highscore!"
+    inputFormEl.textContent = "You Have The New Highscore!";
+    inputFormEl.style.animation = "colorPulseGreen .5s linear 0s infinite alternate";
     element.appendChild(inputFormEl);
 
-    const inputNameLable = document.createElement("lable")
+    const inputNameLable = document.createElement("lable");
     inputNameLable.setAttribute("for", "inputArea");
     inputNameLable.textContent = "Please Enter Your Name Here:";
     inputFormEl.appendChild(inputNameLable);
 
+    
     const inputEl = document.createElement("input");
-    inputEl.setAttribute("type", "text")
+    inputEl.setAttribute("type", "text");
     inputEl.className = "inputUserName";
     inputEl.setAttribute("name", "inputArea");
     inputFormEl.appendChild(inputEl);

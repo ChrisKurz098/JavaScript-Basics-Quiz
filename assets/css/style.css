@@ -6,7 +6,7 @@ body{
     border-bottom: 3px solid;
     flex-wrap: wrap;
     justify-content: space-around;
-    animation: colorPulse .5s linear 0s infinite alternate;
+    
 
 }
 
@@ -16,6 +16,10 @@ body{
     text-align:center;
     font-size: 18px;
 
+}
+
+#timerDisplay{
+  
 }
 
 
@@ -29,13 +33,25 @@ body{
 
 
 /*---------------Animations --------------------*/
-@keyframes colorPulse {
+@keyframes colorPulseRed {
     from {
+        color: rgb(88, 1, 1);
         
-        border-color:  rgb(21, 78, 3);
     }
     to {
         
-        border-color: rgb(249, 251, 252); 
+        color:  rgb(255, 0, 0);
+    }
+}
+
+
+@keyframes colorPulseGreen {
+    from {
+        color: rgb(1, 88, 8);
+        
+    }
+    to {
+        
+        color:  rgb(16, 255, 8);
     }
 }
