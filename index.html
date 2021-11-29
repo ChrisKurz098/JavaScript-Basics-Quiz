@@ -12,22 +12,24 @@
 <body>
     <header id= "headerEl">
         <h1 id="highScoreDisplay" class = "headerInfo">View High Score</h1>
-        <h2 id="timerDisplay" class = "headerInfo">Timer:</h2>
+        <h2 id="timerDisplay" class = "headerInfo">Timer: --</h2>
     </header>
 
 
     <section id="mainCard">
         <div class = "card" id="startCard">
-            <h2 class = "headerClass">Javascript Basics Quiz</h2>
+            <h2 class = "titleClass">Javascript Basics Quiz</h2>
             <h3>Please press START to begin your quiz!</h3>
             <button id = "startButton">START</button>
         </div>
 
         
       <div class = "card" id = "quizCard">
+          <div id = "question">
           <h2 class = "headerClass" id="questionText" ></h2>
-          <p class = "styleCode" id="codeText"></p>
-
+          <p class = "codeClass" id="codeText"></p>
+        </div>
+        
           <div id="choiceButtons" >
               <button id = "answerA" class ="btn" data-choice='A'></button>
               <button id = "answerB" class ="btn" data-choice='B'></button>
@@ -37,9 +39,11 @@
           <h3 id="result"></h3>
       </div>
 
+
       <div class = "card" id="finishCard">
-            
+            <!--Create all the element here in JS-->
     </div>
+    
     </section>
 
     <script src="./assets/js/script.js"></script>

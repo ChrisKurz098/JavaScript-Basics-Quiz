@@ -1,26 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
 body{
+ 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #headerEl {
-    display: flex;
     border-bottom: 3px solid;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    
-
+    border-color:#b9c8ce;
+    padding-bottom: 20px;
 }
 
 .headerInfo{
+    color:#565c5f;
     white-space: pre;
-    flex: 1 25%;
+   
     text-align:center;
     font-size: 18px;
 
 }
 
-#timerDisplay{
-  
+#highScoreDisplay{
+    padding-right: 75vw;
 }
+
+#timerDisplay{
+    border:3px solid;
+
+    border-radius:50px;
+    
+    margin: 0 30vw;
+}
+
+
 
 
 
@@ -29,6 +43,107 @@ body{
 
 #mainCard {
     text-align: center;
+}
+
+.titleClass{
+font-size: 35px;
+padding-bottom: 5px;
+color: #004b64;
+border-bottom: 3px solid #b9c8ce;;
+}
+.headerClass{
+    font-size: 25px;
+    color: #004b64;
+    border-bottom: 3px solid #b9c8ce;;
+    }
+
+#startButton{
+    margin-top: 13px;
+    animation: pulseScale 1s infinite alternate;
+}
+/*---Game Card---*/
+#question{
+    display:flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+
+
+#questionText{
+    display: block;
+    width: 100vw;
+    padding-bottom: 5px;
+}
+#codeText{
+    min-height: 0;
+    min-width: 400px;
+    font-family:  OCR A Std, monospace;
+    margin: 5px;
+    flex: 100%;
+    height:auto;
+    white-space: pre;
+    text-align: left;
+    color:rgb(18, 128, 8);
+    background-color: rgba(233, 232, 232, 0.582);
+    border: 2px solid #747e81;
+}
+
+#choiceButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* width:150px; */
+}
+
+.btn{
+    padding: 5px;
+    font-size: 18px;
+    margin: 5px;
+    border-radius: 20px;
+    height: auto;
+    min-height: 30px;
+    width: 300px;
+}
+
+.btn :hover{
+    color: royalblue;
+}
+
+#result {
+    margin-top: 30px;
+}
+/*---Finish Card---*/
+#finishCard {
+    color: #004b64;
+    font-weight: bold;
+    font-size: 25px;
+}
+.userInputForm{
+    font-size: 25px;
+    border:5px solid rgb(54, 172, 0);
+    border-radius: 100px;
+    display: flex;
+    margin:20px 25vw;
+    padding:3px 25vw 3px 25vw;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    animation: upFromBottom 1s ;
+    
+}
+
+.userInput{
+  flex: 100%;
+  
+}
+
+#inputFeild
+{
+    width:25vw;
 }
 
 
@@ -44,14 +159,36 @@ body{
     }
 }
 
-
 @keyframes colorPulseGreen {
     from {
-        color: rgb(1, 88, 8);
+        color: rgb(1, 88, 5);
         
     }
     to {
         
-        color:  rgb(16, 255, 8);
+        color:  rgb(0, 255, 42);
     }
+}
+
+
+@keyframes borderPulseGreen {
+    from {
+        border-color: rgb(1, 88, 8);
+        
+    }
+    to {
+        
+        border-color:  rgb(16, 255, 8);
+    }
+}
+
+@keyframes upFromBottom {
+    from {
+        transform: translate(1000px);
+    }
+}
+
+@keyframes pulseScale{
+    from {transform: scale(1)}
+    to {transform: scale(2)}
 }
