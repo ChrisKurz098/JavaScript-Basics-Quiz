@@ -11,7 +11,7 @@ function getHighScore() {
     let topName = scoreData.name;
     let topScore = scoreData.score;
 
-    document.getElementById("highScoreDisplay").textContent = "Current Leader: " + topName + " with a score of " + topScore;
+    document.getElementById("highScoreDisplay").textContent ="Current Leader: \n" + topName + " with a score of " + topScore;
 }
 
 
@@ -153,10 +153,11 @@ function startQuiz(questionArray) {
 
 ////Print  results to screan
 function drawFinishCard(completed, score, numCorrect) {
-
+    const element = document.getElementById("finishCard");
+    element.style.display = "block";
     document.getElementById("startCard").style.display = "none";
     document.getElementById("quizCard").style.display = "none";
-    document.getElementById("finishCard").style.display = "block";
+
 
 
 
@@ -168,7 +169,8 @@ function drawFinishCard(completed, score, numCorrect) {
     let currentHighScore = loadHighScore();
     let scoreToBeat = currentHighScore.score;
     console.log(scoreToBeat);
-    let checkScore = checkHighScore(finalScore, currentHighScore);
+    let checkScore = checkHighScore(finalScore, scoreToBeat);
+    console.log(checkScore);
 
     if (completed) {
         finishEl.textContent = "Your Time: " + score +
@@ -182,8 +184,8 @@ function drawFinishCard(completed, score, numCorrect) {
     }
 
     if (checkScore) {
+        askForName(finalScore, element);
         //display high score input screen
-        return;
     }
 }
 
@@ -214,13 +216,53 @@ function loadHighScore() {
 /////////////////SAVE SCROE FUNCTION/////////////////////////////
 function saveHighScore(newHighScore) {
     localStorage.setItem("highScore", JSON.stringify(newHighScore));
+    return;
+}
+
+///////////////New highscore input//////////////////////////////
+function askForName(newScore, element) {
+    //create new dif to handle eventListener "submit"
+    const inputFormEl = document.createElement("form");
+    inputFormEl.className = "userInputForm";
+    inputFormEl.textContent = "You Have The New Highscore!"
+    element.appendChild(inputFormEl);
+
+    const inputNameLable = document.createElement("lable")
+    inputNameLable.setAttribute("for", "inputArea");
+    inputNameLable.textContent = "Please Enter Your Name Here:";
+    inputFormEl.appendChild(inputNameLable);
+
+    const inputEl = document.createElement("input");
+    inputEl.setAttribute("type", "text")
+    inputEl.className = "inputUserName";
+    inputEl.setAttribute("name", "inputArea");
+    inputFormEl.appendChild(inputEl);
+
+    const submitBtn = document.createElement("button");
+    submitBtn.className = ("submitButton");
+    submitBtn.textContent = "Submit"
+    inputFormEl.appendChild(submitBtn);
+
+    inputFormEl.addEventListener("submit", function getNewUser() {
+        let newName = inputEl.value;
+        let newHighScoreData =
+        {
+            name: newName,
+            score: newScore
+        };
+        console.log(newHighScoreData);
+        saveHighScore(newHighScoreData);
+        return;
+    });
+
+
 }
 
 function checkHighScore(finalScore, currentHighScore) {
     if (finalScore < currentHighScore) {
         return false;
     }
-    return true;
+    else { return true; }
 }
 
 ////JSON key is highScore
