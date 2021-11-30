@@ -442,7 +442,8 @@ function askForName(newScore, element) {
         let newName = inputEl.value;
         let newHighScoreData =
         {
-            name: newName,
+            //cut off anything that is beyond 14 characters to prevent ridiculous names
+            name: newName.slice(0, 14),
             score: newScore
         };
         console.log(newHighScoreData);
