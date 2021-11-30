@@ -78,6 +78,7 @@ border-bottom: 3px solid #b9c8ce;;
 }
 #codeText{
     min-height: 0;
+    padding: 10px;
     min-width: 400px;
     font-family:  OCR A Std, monospace;
     margin: 5px;
@@ -100,20 +101,25 @@ border-bottom: 3px solid #b9c8ce;;
 }
 
 .btn{
-    padding: 5px;
+    background-color: royalblue;
+    color: #ffff;
+    padding: 10px;
     font-size: 18px;
+    font-weight: bold;
     margin: 5px;
     border-radius: 20px;
     height: auto;
     min-height: 30px;
-    width: 300px;
+    min-width: 440px;
 }
 
-.btn :hover{
+.btn:hover{
     color: royalblue;
+    background-color: #ffff;
 }
 
 #result {
+    font-size: 30px;
     margin-top: 30px;
 }
 /*---Finish Card---*/
@@ -191,4 +197,20 @@ border-bottom: 3px solid #b9c8ce;;
 @keyframes pulseScale{
     from {transform: scale(1)}
     to {transform: scale(2)}
+}
+
+@keyframes pushCardLeft{
+    from {
+        transform: translate(0);
+    }
+     to {
+         transform: translate(-150%);
+        }
+}
+
+@keyframes codeAnimation {
+    from {
+        transform: scale(1.3, 0.01);
+    }
+    
 }

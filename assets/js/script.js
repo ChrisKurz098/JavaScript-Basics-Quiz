@@ -11,7 +11,7 @@ function getHighScore() {
     let topName = scoreData.name;
     let topScore = scoreData.score;
 
-    document.getElementById("highScoreDisplay").textContent ="Current Leader: \n" + topName + " with a score of " + topScore;
+    document.getElementById("highScoreDisplay").textContent = "Current Leader: \n" + topName + " with a score of " + topScore;
 }
 
 
@@ -21,92 +21,92 @@ function initQuestions() {
 
     array = [
         {
-            question: "What HTML tag do we use to indicate a script in  HTML?",
+            question: "What tag do we use to indicate a script in HTML?",
             code: "",
-            choiceA: "FirstChoice",
+            choiceA: "script = script.js",
             choiceB: "<script></script>",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceC: "<code></code>",
+            choiceD: "href = './script.js'",
             correct: "B"
         },
         {
-            question: "What JS syntax can we use to identify this HTML element?",
+            question: "What syntax can we use to identify this HTML element in JS?",
             code: "<div id = “divElement”> Here is a Div element </div>",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "document.getElementById(“divElement”)",
+            choiceA: "html.divElement",
+            choiceB: "document.getElementsByClass('divElement')",
+            choiceC: ".divElement",
+            choiceD: "document.getElementById('divElement')",
             correct: "D"
         },
         {
-            question: "Where should we insert the JavaScript in an HTML file?",
+            question: "Where should we insert JavaScript in an HTML file?",
             code: "",
             choiceA: "<body>",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceB: "<head>",
+            choiceC: "<a>",
+            choiceD: "<code>",
             correct: "A"
         },
         {
-            question: "How would we change the color of the font for “textEl”?",
+            question: "How would we change the color of the font for 'textEl'?",
             code: "let textEl =  document.getElementById(“textBox”);",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
+            choiceA: "color: red",
+            choiceB: "textEl.color",
             choiceC: "textEl.style.color",
-            choiceD: "FourthChoice",
+            choiceD: "textEl {color: red;}",
             correct: "C"
         },
         {
-            question: "Which of these variables contains an object?",
+            question: "Which of these variables is an object?",
             code: "let A = [1,2,3,4];\nlet B = runProgram();\nlet C = {food: grapes};\nlet D = Math.floor(Math.random(1)*10);",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
+            choiceA: "A",
+            choiceB: "B",
             choiceC: "C",
-            choiceD: "FourthChoice",
+            choiceD: "D",
             correct: "C"
         },
         {
             question: "What does X equal?",
             code: "Let X = example(5,10);\nfunction example(a,b){\nlet Z = a+b;\nreturn Z;\n}",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
+            choiceA: "z",
+            choiceB: "10",
+            choiceC: "5",
             choiceD: "15",
             correct: "D"
         },
         {
-            question: "What can we use to repeat a piece of code for a known number of times?",
+            question: "What is the best way to repeat a piece of code for a known number of times?",
             code: "",
-            choiceA: "FirstChoice",
+            choiceA: "if statment",
             choiceB: "for loop",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceC: "while loop",
+            choiceD: "else if",
             correct: "B"
         },
         {
             question: "What would you use to create a browser pop up message?",
             code: "",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
+            choiceA: "window.message();",
+            choiceB: "browser.message = 'string'",
             choiceC: "alert()",
-            choiceD: "FourthChoice",
+            choiceD: "All of the above",
             correct: "C"
         },
         {
             question: "This code throws an error. What could we do to fix it?",
             code: "myFunction();\nvar myFunction = function() {\nconsole.log('Hello!');\n};",
             choiceA: "Put the function call after the function",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceB: "replace 'myFunction()' with 'function()'",
+            choiceC: "Put '{}' around 'console.log('Hello!)'",
+            choiceD: "This code should work just fine",
             correct: "A"
         },
         {
             question: "If we use localStorage to save a value, that value will be:",
             code: "",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
+            choiceA: "Saved to an HTML doc",
+            choiceB: "Saved to a server",
+            choiceC: "Available on any computer the user is log in to",
             choiceD: "Available only on the computer it was saved on",
             correct: "D"
         },
@@ -114,95 +114,95 @@ function initQuestions() {
             question: "What syntax is used to run a function on a mouse click?",
             code: "",
             choiceA: "EventTarget.addEventListener(“click”,function())",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceB: "Eventtarget.mouseClick = true",
+            choiceC: "if (click == true)",
+            choiceD: "onMouseClick.function()",
             correct: "A"
         },
         {
-            question: "Which selection is the correct way to write an if statement in JS?",
+            question: "Which selection is the correct way to start an if statement in JS?",
             code: "",
-            choiceA: "FirstChoice",
-            choiceB: "if (x==5)",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceA: "if x == 5",
+            choiceB: "if (x == 5)",
+            choiceC: "if x ==5 then {}",
+            choiceD: "if (x == 5) then {}",
             correct: "B"
         },
         {
-            question: "How do you write an if statement if something is NOT equal to 10?",
+            question: "How do you write an if statement to check if something is NOT equal to 10?",
             code: "",
-            choiceA: "if (x !=10)",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceA: "if (x != 10)",
+            choiceB: "if (x not 10)",
+            choiceC: "!if (x == 10)",
+            choiceD: "if (10 == x)",
             correct: "A"
         },
         {
             question: "How do you start a for loop?",
             code: "",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
-            choiceC: "for (i =0; i < number; i++)",
-            choiceD: "FourthChoice",
+            choiceA: "for (i = 0: i < number: i++)",
+            choiceB: "for (i = 0, i < number, i++)",
+            choiceC: "for (i = 0; i < number; i++)",
+            choiceD: "for ([i = 0], [i < number], [i++])",
             correct: "C"
         },
         {
             question: "How do you make a single line comment in JS code?",
             code: "",
-            choiceA: "FirstChoice",
+            choiceA: "<!--comment",
             choiceB: "//comment",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceC: "**comment",
+            choiceD: "*/comment",
             correct: "B"
         },
         {
             question: "What will the following function return?",
             code: "let result = test(“string”);\nfunction test(input){\nif (input = NaN) {\nreturn 10;\n}\nelse{\nreturn input;\n}}",
             choiceA: "10",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceB: "'string'",
+            choiceC: "false",
+            choiceD: "NaN",
             correct: "A"
         },
         {
             question: "What will the value of newText be?",
             code: "Let text = “Hello! My name is Greg.”;\nLet newText = text.replace(“greg”,”sam”);",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
+            choiceA: "Hello! My name is sam.",
+            choiceB: "Hello! My name is Sam.",
             choiceC: "Hello! My name is Greg.",
-            choiceD: "FourthChoice",
+            choiceD: "Sam! My name is Greg.",
             correct: "C"
         },
         {
             question: "What syntax do we use to make text all lower case?",
             code: "",
-            choiceA: "FirstChoice",
-            choiceB: "SecondChoice",
-            choiceC: "ThirdChoice",
+            choiceA: "makeLowerCase",
+            choiceB: "setLowerCase",
+            choiceC: "allLowerCase",
             choiceD: "toLowerCase",
             correct: "D"
         },
         {
-            question: "What would you do to make selectedLetter = “B”?",
+            question: "What would you do to make selectedLetter = “D”?",
             code: "let array=[“A”,”B”,”C”,”D”];\nlet selectedLetter = ???",
-            choiceA: "FirstChoice",
-            choiceB: "array[1]",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceA: "array[0]",
+            choiceB: "array[3]",
+            choiceC: "array['D']",
+            choiceD: "array[4]",
             correct: "B"
         },
         {
             question: "How would you get Johns age?",
-            code: "Array = [{name: “John”, age: 34}, {name: “Bill”, age: 66];\njohnsAge = ???;",
-            choiceA: "FirstChoice",
+            code: "Array = [\n{\nname: “John”, \nage: 34\n},\n {\nname: “Bill”,\n age: 66\n}];\njohnsAge = ???;",
+            choiceA: "John.age",
             choiceB: "array[0].age",
-            choiceC: "ThirdChoice",
-            choiceD: "FourthChoice",
+            choiceC: "array[1].age",
+            choiceD: "array[0].name.age",
             correct: "B"
         },
     ];
 
-    array = randomArray(array);
+    array = randomizeArray(array);
     startQuiz(array);
 }
 
@@ -218,7 +218,7 @@ function startQuiz(questionArray) {
     let time = 240;
     let timerDisplay = document.getElementById("timerDisplay");
     timerDisplay.textContent = "Time: " + time;
-    
+
 
     //define  all of the quizCard elements
     const quizCard = document.getElementById("quizCard");
@@ -232,7 +232,7 @@ function startQuiz(questionArray) {
     const buttonsEl = document.getElementById("choiceButtons");
 
     //randomize choice order
-    let randomChoice = randomArray(array=[1,2,3,4]);
+    let randomChoice = randomizeArray(array = [1, 2, 3, 4]);
     choiceA.style.order = randomChoice[0];
     choiceB.style.order = randomChoice[1];
     choiceC.style.order = randomChoice[2];
@@ -254,9 +254,23 @@ function startQuiz(questionArray) {
     runQuestions(questionArray, 0);
     ///////////////Displays the questions and choices and waits for input
     function runQuestions(array, questionNum) {
+
+        /*for some reason you can't just remove an animation then add it 
+        again to repeat the animation. You have to add a pause somehow then remove the animation
+         then add the animation and it will run again. I did this with setInterval. It doesnt even have wait 
+         for as long as you set the animation duration but it will cut it sgort if its less */
+        let resetAnimation = setInterval(function () {
+            questionEl.style.animation = "none";
+            codeEl.style.animation = "none";
+            clearInterval(resetAnimation);
+        }, 300);
+
+
+
         //if we have passed the last question, go to finishCard and return from function
         if (questionNum > array.length - 1) {
             timerDisplay.style.animation = "none";
+
             clearInterval(timer);
             drawFinishCard(true, time, numCorrect);
             return;
@@ -264,12 +278,17 @@ function startQuiz(questionArray) {
 
         ///Hide code element if no code
         if (array[questionNum].code === "") {
+
             codeEl.style.display = "none";
         }
-        else{
+        else {
+
             codeEl.style.display = "flex";
+            codeEl.style.animation = "codeAnimation .3s";
+
         }
         //display all new element text for current question
+
         questionEl.textContent = array[questionNum].question;
         codeEl.textContent = array[questionNum].code;
         choiceA.textContent = array[questionNum].choiceA;
@@ -279,23 +298,38 @@ function startQuiz(questionArray) {
 
 
         //listen for button click then run check function
+
         buttonsEl.addEventListener("pointerup", function checkAnswer(event) {
+
             //remove event listener so that when the function runs again, the event listsner isn't duplicated
             buttonsEl.removeEventListener("pointerup", checkAnswer);
+
             let selectedChoiceEl = event.target;
 
             if (selectedChoiceEl.dataset.choice === array[questionNum].correct) {
+
                 questionNum++;
                 numCorrect++;
                 result.textContent = "Correct";
+
+                questionEl.style.animation = "pushCardLeft .2s";
+
                 runQuestions(array, questionNum);
+
                 return;
+
             }
             else {
+
                 questionNum++;
                 result.textContent = "Wrong";
+
+                questionEl.style.animation = "pushCardLeft .2s";
+
                 runQuestions(array, questionNum);
+
                 return;
+
             }
 
         });
@@ -314,7 +348,7 @@ function drawFinishCard(completed, score, numCorrect) {
     const printScore = document.createElement("div");
 
     const finishEl = document.getElementById("finishCard");
-    const bonus = (numCorrect * 5);
+    const bonus = (numCorrect * 20);
     const finalScore = (score + bonus)
     finishEl.style.whiteSpace = "pre";
 
@@ -326,13 +360,14 @@ function drawFinishCard(completed, score, numCorrect) {
 
     if (completed) {
         finishEl.textContent = "Your Time: " + score +
+            "\nNumber Correct: " + numCorrect + "/20" +
             "\nCorrect Answer Bonus: " + (bonus) +
             "\nHighScore: " + scoreToBeat;
-            
-            
-            printScore.textContent = "Final Score: " + finalScore ;
-            printScore.id = "finalScoreDisplay";
-            finishEl.appendChild(printScore);
+
+
+        printScore.textContent = "Final Score: " + finalScore;
+        printScore.id = "finalScoreDisplay";
+        finishEl.appendChild(printScore);
     }
     else {
         finishEl.textContent = "Sorry, but your time ran out!"
@@ -355,7 +390,7 @@ function initHighScore() {
     if (!checkIfHighScore) {
         defaultScore = {
             name: "CK",
-            score: 50
+            score: 400
         };
         localStorage.setItem("highScore", JSON.stringify(defaultScore));
         console.log(checkIfHighScore);
@@ -385,12 +420,12 @@ function askForName(newScore, element) {
     element.appendChild(inputFormEl);
 
     const inputNameLable = document.createElement("lable");
-    inputNameLable.className="userInput";
+    inputNameLable.className = "userInput";
     inputNameLable.setAttribute("for", "inputArea");
     inputNameLable.textContent = "Please Enter Your Name Here:";
     inputFormEl.appendChild(inputNameLable);
 
-    
+
     const inputEl = document.createElement("input");
     inputEl.setAttribute("type", "text");
     inputEl.className = "userInput";
@@ -429,24 +464,23 @@ function checkHighScore(finalScore, currentHighScore) {
 ////highScore contains obj with name and score (highScore.name and highScore.score)
 
 
-function randomArray(array){
+///////////////////////////////////////Shuffle array function//////////////////////
+function randomizeArray(array) {
     let counter = array.length;
-    let current = counter-1;
-//this while loop will take the last array item and swap it with a random array item, then it moves on to the second to last item, repeats, and so on until it reaches the start of the array
-    while (counter>0){
+    let current = counter - 1;
+    //this while loop will take the last array item and swap it with a random array item, then it moves on to the second to last item, repeats, and so on until it reaches the start of the array
+    while (counter > 0) {
         //this can only equal 0 to counter-1 (array.length-1) because of Math.floor so this number can represent the array index number rather than the length 
-        let randomNum= Math.floor(Math.random(1)*counter); 
+        let randomNum = Math.floor(Math.random(1) * counter);
         //save the values of the index
         let a = array[current];
         let b = array[randomNum];
         //swap the values
         array[current] = b;
-        array[randomNum]=a;
+        array[randomNum] = a;
         counter--;
         current--;
     }
     return array;
 }
-
-
 
