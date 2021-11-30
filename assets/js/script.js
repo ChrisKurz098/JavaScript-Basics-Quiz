@@ -199,7 +199,7 @@ function initQuestions() {
             choiceC: "array[1].age",
             choiceD: "array[0].name.age",
             correct: "B"
-        },
+        }
     ];
 
     array = randomizeArray(array);
@@ -249,7 +249,7 @@ function startQuiz(questionArray) {
         }
 
     }, 1000);
-    timerDisplay.style.animation = "colorPulseRed .5s linear .5s infinite alternate"
+    timerDisplay.style.animation = "colorPulseRed .5s linear .5s infinite alternate";
 
     runQuestions(questionArray, 0);
     ///////////////Displays the questions and choices and waits for input
@@ -349,7 +349,7 @@ function drawFinishCard(completed, score, numCorrect) {
 
     const finishEl = document.getElementById("finishCard");
     const bonus = (numCorrect * 20);
-    const finalScore = (score + bonus)
+    const finalScore = (score + bonus);
     finishEl.style.whiteSpace = "pre";
 
     let currentHighScore = loadHighScore();
@@ -400,7 +400,7 @@ function initHighScore() {
 
 /////////////////LOAD SCORE FUNCTION/////////////////////////////
 function loadHighScore() {
-    let currentHighScore = localStorage.getItem("highScore")
+    let currentHighScore = localStorage.getItem("highScore");
     currentHighScore = JSON.parse(currentHighScore);
     return currentHighScore;
 }
@@ -435,7 +435,7 @@ function askForName(newScore, element) {
 
     const submitBtn = document.createElement("button");
     submitBtn.className = ("submitButton");
-    submitBtn.textContent = "Submit"
+    submitBtn.textContent = "Submit";
     inputFormEl.appendChild(submitBtn);
 
     inputFormEl.addEventListener("submit", function getNewUser() {
