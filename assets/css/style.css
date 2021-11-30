@@ -23,6 +23,7 @@ body{
 }
 
 #highScoreDisplay{
+    
     padding-right: 75vw;
 }
 
@@ -43,6 +44,23 @@ body{
 
 #mainCard {
     text-align: center;
+}
+
+#topList{
+    border: 5px solid #b9c8ce;
+    font-weight:  bold;
+    border-radius: 11px;
+    font-size: 35px;
+    color: #004b64;
+    margin: 40px 35vw 0px 35vw;
+}
+
+.topPlayer{
+    border: 3px solid #b9c8ce;;
+    margin: 10px;
+    color: black;
+    font-weight:500;
+    font-size: 25px;
 }
 
 .titleClass{

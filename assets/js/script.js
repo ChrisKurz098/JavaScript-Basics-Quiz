@@ -8,10 +8,15 @@ document.getElementById("startButton").addEventListener("click", initQuestions);
 function getHighScore() {
     initHighScore();
     let scoreData = loadHighScore();
-    let topName = scoreData.name;
-    let topScore = scoreData.score;
+    let topName = scoreData[0].name;
+    let topScore = scoreData[0].score;
 
     document.getElementById("highScoreDisplay").textContent = "Current Leader: \n" + topName + " with a score of " + topScore;
+    document.getElementById("scoreDisplay1").textContent = scoreData[0].name + ':' + scoreData[0].score;
+    document.getElementById("scoreDisplay2").textContent = scoreData[1].name + ':' + scoreData[1].score;
+    document.getElementById("scoreDisplay3").textContent = scoreData[2].name + ':' + scoreData[2].score;
+    document.getElementById("scoreDisplay4").textContent = scoreData[3].name + ':' + scoreData[3].score;
+    document.getElementById("scoreDisplay5").textContent = scoreData[4].name + ':' + scoreData[4].score;
 }
 
 
@@ -353,16 +358,15 @@ function drawFinishCard(completed, score, numCorrect) {
     finishEl.style.whiteSpace = "pre";
 
     let currentHighScore = loadHighScore();
-    let scoreToBeat = currentHighScore.score;
-    console.log(scoreToBeat);
-    let checkScore = checkHighScore(finalScore, scoreToBeat);
-    console.log(checkScore);
+    //checks the lowest score
+
+    let checkScore = checkHighScore(finalScore, currentHighScore);
+    console.log("Check Score: ", checkScore);
 
     if (completed) {
         finishEl.textContent = "Your Time: " + score +
             "\nNumber Correct: " + numCorrect + "/20" +
-            "\nCorrect Answer Bonus: " + (bonus) +
-            "\nHighScore: " + scoreToBeat;
+            "\nCorrect Answer Bonus: " + (bonus);
 
 
         printScore.textContent = "Final Score: " + finalScore;
@@ -374,9 +378,9 @@ function drawFinishCard(completed, score, numCorrect) {
         return;
     }
 
-    if (checkScore) {
+    if (checkScore != undefined) {
         printScore.style.animation = "colorPulseGreen .5s linear 0s infinite alternate";
-        askForName(finalScore, element);
+        askForName(finalScore, element, checkScore);
     }
 }
 
@@ -388,13 +392,29 @@ function initHighScore() {
     checkIfHighScore = localStorage.getItem("highScore")
     console.log(checkIfHighScore);
     if (!checkIfHighScore) {
-        defaultScore = {
-            name: "CK",
+        let defaultScore = [{
+            name: "Chris",
+            score: 450
+        },
+        {
+            name: "Joe",
             score: 400
-        };
+        },
+        {
+            name: "Nikki",
+            score: 350
+        },
+        {
+            name: "Jake",
+            score: 320
+        },
+        {
+            name: "Jude",
+            score: 290
+        }];
         localStorage.setItem("highScore", JSON.stringify(defaultScore));
-        console.log(checkIfHighScore);
-    }
+
+    };
     return;
 }
 
@@ -411,7 +431,7 @@ function saveHighScore(newHighScore) {
 }
 
 ///////////////New highscore input//////////////////////////////
-function askForName(newScore, element) {
+function askForName(newScore, element,checkScore) {
     //create new dif to handle eventListener "submit"
     let inputFormEl = document.createElement("form");
     inputFormEl.className = "userInputForm";
@@ -440,25 +460,25 @@ function askForName(newScore, element) {
 
     inputFormEl.addEventListener("submit", function getNewUser() {
         let newName = inputEl.value;
-        let newHighScoreData =
-        {
-            //cut off anything that is beyond 14 characters to prevent ridiculous names
-            name: newName.slice(0, 14),
-            score: newScore
-        };
-        console.log(newHighScoreData);
-        saveHighScore(newHighScoreData);
+        let scoreList = loadHighScore();
+        scoreList[checkScore].name = newName;
+        scoreList[checkScore].score = newScore;
+        console.log(scoreList);
+        saveHighScore(scoreList);
+   
         return;
     });
 
 
 }
 
-function checkHighScore(finalScore, currentHighScore) {
-    if (finalScore < currentHighScore) {
-        return false;
+function checkHighScore(finalScore, scoreList) {
+    for (i = 0; i < scoreList.length; i++) {
+        if (finalScore > scoreList[i].score) {
+            return i;
+        }
     }
-    else { return true; }
+
 }
 
 ////JSON key is highScore
