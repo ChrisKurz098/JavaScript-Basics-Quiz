@@ -38,7 +38,13 @@ body{
 
     border-radius:50px;
     
-    margin: 0 30vw;
+    margin: 10px 30vw 10px 30vw;
+}
+
+#result {
+    font-size: 42px;
+    
+    text-align: center;
 }
 
 
@@ -82,7 +88,13 @@ border-bottom: 3px solid var(--secondary-color);;
     }
 
 #startButton{
-    margin-top: 13px;
+    padding: 10px 20px;
+    margin-top: 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(69, 94, 170);
     animation: pulseScale 1s infinite alternate;
 }
 /*---Game Card---*/
@@ -126,7 +138,7 @@ border-bottom: 3px solid var(--secondary-color);;
 }
 
 .btn{
-    background-color: royalblue;
+    background-color: rgb(69, 94, 170);
     color: #ffff;
     padding: 10px;
     font-size: 18px;
@@ -143,10 +155,7 @@ border-bottom: 3px solid var(--secondary-color);;
     background-color: #ffff;
 }
 
-#result {
-    font-size: 30px;
-    margin-top: 30px;
-}
+
 /*---Finish Card---*/
 #finishCard {
     color: var(--tertiary-color);
@@ -156,10 +165,11 @@ border-bottom: 3px solid var(--secondary-color);;
 .userInputForm{
     font-size: 25px;
     border:5px solid rgb(54, 172, 0);
+    color: var(--tertiary-color);
     border-radius: 100px;
     display: flex;
     margin:20px 25vw;
-    padding:3px 25vw 3px 25vw;
+    padding:10px 25vw 10px 25vw;
     justify-content: center;
     text-align: center;
     flex-wrap: wrap;
@@ -174,7 +184,17 @@ border-bottom: 3px solid var(--secondary-color);;
 
 #inputFeild
 {
-    width:25vw;
+    font-size: 20px;
+    line-height: 50px;
+    width:70vw;
+    border-radius: 20px;
+}
+
+.submitButton{
+    margin-top: 25px;
+    padding: 16px 10vw 16px 10vw;
+    font-size: 20px;
+    border-radius: 20px;
 }
 
 
@@ -242,10 +262,16 @@ border-bottom: 3px solid var(--secondary-color);;
 
 /*-------------Media Queries----------------*/
 
-
-
+@media screen and (max-width: 890px){
+    .userInputForm{
+        
+        padding: 49px;
+    }
+}
 /*phone Scrren*/
 @media screen and (max-width: 768px){
+
+
     #questionText {
         font-size: 25px;
     }
@@ -256,13 +282,14 @@ border-bottom: 3px solid var(--secondary-color);;
     }
     .btn {
         font-size: 16px;
-        min-width: 313px;
+        width: 100vw;
         min-height: 65px;
         font-weight: bold;
         }
 
         #topList{
             font-size: 28px;
+            margin: 40px 5vw 0px 5vw;
         }
 
         #finishCard{
@@ -272,22 +299,22 @@ border-bottom: 3px solid var(--secondary-color);;
         .userInputForm{
             border: none;
             border-top:5px solid rgb(16, 255, 8);
+            padding-top: 10px;
             border-radius: 0px;
         }
         #inputFeild{
             margin-top: 20px;
-          padding: 15px 150px 15px 150px;
+ 
         }
+
         .submitButton{
-            margin-top: 25px;
+            
             padding: 16px 30vw 16px 30vw;
-            font-size: 20px;
+            
         }
         #result{
-            position: fixed;
-            top: 0px;
-            left: 80vw;
-            font-size: 14px;
+            
+            font-size: 22px;
         }
 
         
@@ -310,10 +337,7 @@ border-bottom: 3px solid var(--secondary-color);;
         font-weight: bold;
         }
 
-      
-        #topList{
-            font-size: 28px;
-        }
+   
 
        
         

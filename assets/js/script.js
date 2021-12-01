@@ -11,12 +11,7 @@ function getHighScore() {
     let topName = scoreData[0].name;
     let topScore = scoreData[0].score;
 
-    document.getElementById("highScoreDisplay").textContent = "Current Leader: \n" + topName + " with a score of " + topScore;
-    document.getElementById("scoreDisplay1").textContent = scoreData[0].name + ':' + scoreData[0].score;
-    document.getElementById("scoreDisplay2").textContent = scoreData[1].name + ':' + scoreData[1].score;
-    document.getElementById("scoreDisplay3").textContent = scoreData[2].name + ':' + scoreData[2].score;
-    document.getElementById("scoreDisplay4").textContent = scoreData[3].name + ':' + scoreData[3].score;
-    document.getElementById("scoreDisplay5").textContent = scoreData[4].name + ':' + scoreData[4].score;
+  showHighScores();
 }
 
 
@@ -218,6 +213,7 @@ function startQuiz(questionArray) {
     //hide startCard element
     document.getElementById("startCard").style.display = "none";
     document.getElementById("finishCard").style.display = "none";
+    document.getElementById("topList").style.display = "none";
     document.getElementById("quizCard").style.display = "block";
     let numCorrect = 0; //the number of correct answers
     let time = 240;
@@ -316,7 +312,7 @@ function startQuiz(questionArray) {
                 questionNum++;
                 numCorrect++;
                 result.textContent = "Correct";
-
+                result.style.color = "green";
                 questionEl.style.animation = "pushCardLeft .2s";
 
                 runQuestions(array, questionNum);
@@ -328,7 +324,7 @@ function startQuiz(questionArray) {
 
                 questionNum++;
                 result.textContent = "Wrong";
-
+                result.style.color = "red";
                 questionEl.style.animation = "pushCardLeft .2s";
 
                 runQuestions(array, questionNum);
@@ -382,6 +378,11 @@ function drawFinishCard(completed, score, numCorrect) {
         printScore.style.animation = "colorPulseGreen .5s linear 0s infinite alternate";
         askForName(finalScore, element, checkScore);
     }
+
+    document.getElementById("topList").style.display = "block";
+    showHighScores();
+
+
 }
 
 
@@ -406,11 +407,11 @@ function initHighScore() {
         },
         {
             name: "Jake",
-            score: 320
+            score: 220
         },
         {
             name: "Jude",
-            score: 290
+            score: 190
         }];
         localStorage.setItem("highScore", JSON.stringify(defaultScore));
 
@@ -418,6 +419,16 @@ function initHighScore() {
     return;
 }
 
+function showHighScores(){
+    let scoreData = loadHighScore();
+    document.getElementById("highScoreDisplay").textContent = "Current Leader: \n" + scoreData[0].name + " with a score of " + scoreData[0].score;
+    document.getElementById("scoreDisplay1").textContent = scoreData[0].name + ':' + scoreData[0].score;
+    document.getElementById("scoreDisplay2").textContent = scoreData[1].name + ':' + scoreData[1].score;
+    document.getElementById("scoreDisplay3").textContent = scoreData[2].name + ':' + scoreData[2].score;
+    document.getElementById("scoreDisplay4").textContent = scoreData[3].name + ':' + scoreData[3].score;
+    document.getElementById("scoreDisplay5").textContent = scoreData[4].name + ':' + scoreData[4].score;
+    return
+}
 /////////////////LOAD SCORE FUNCTION/////////////////////////////
 function loadHighScore() {
     let currentHighScore = localStorage.getItem("highScore");
@@ -435,7 +446,7 @@ function askForName(newScore, element,checkScore) {
     //create new dif to handle eventListener "submit"
     let inputFormEl = document.createElement("form");
     inputFormEl.className = "userInputForm";
-    inputFormEl.textContent = "You Have The New Highscore!";
+    inputFormEl.textContent = "You Have A New Highscore!";
     //  inputFormEl.style.animation = "borderPulseGreen .5s linear 0s infinite alternate";
     element.appendChild(inputFormEl);
 
@@ -451,6 +462,7 @@ function askForName(newScore, element,checkScore) {
     inputEl.className = "userInput";
     inputEl.id = "inputFeild";
     inputEl.setAttribute("name", "inputArea");
+    
     inputFormEl.appendChild(inputEl);
 
     const submitBtn = document.createElement("button");
@@ -461,13 +473,25 @@ function askForName(newScore, element,checkScore) {
     inputFormEl.addEventListener("submit", function getNewUser() {
         let newName = inputEl.value;
         let scoreList = loadHighScore();
+        for (i = checkScore; i<scoreList.length-1;i++){
+
+            let oldName = scoreList[i].name;
+            let oldScore = scoreList[i].score;
+            let ii = i+1;
+            scoreList[ii].name = oldName;
+            scoreList[ii].score = oldScore;
+           
+        }
+
+        newName = newName.slice(0,9)
         scoreList[checkScore].name = newName;
         scoreList[checkScore].score = newScore;
-        console.log(scoreList);
-        saveHighScore(scoreList);
+        saveHighScore(scoreList,);
    
         return;
     });
+
+
 
 
 }
