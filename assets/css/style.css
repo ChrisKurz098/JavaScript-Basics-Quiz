@@ -3,13 +3,19 @@
     padding:0;
     box-sizing: border-box;
 }
+:root{
+    --primary-color: #747e81;
+    --secondary-color: #b9c8ce;
+    --tertiary-color: #004b64;
+    
+}
 body{
  
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #headerEl {
     border-bottom: 3px solid;
-    border-color:#b9c8ce;
+    border-color:var(--secondary-color);
     padding-bottom: 20px;
 }
 
@@ -47,16 +53,16 @@ body{
 }
 
 #topList{
-    border: 5px solid #b9c8ce;
+    border: 5px solid var(--secondary-color);
     font-weight:  bold;
     border-radius: 11px;
     font-size: 35px;
-    color: #004b64;
+    color: var(--tertiary-color);
     margin: 40px 20vw 0px 20vw;
 }
 
 .topPlayer{
-    border: 3px solid #b9c8ce;;
+    border: 3px solid var(--secondary-color);;
     margin: 10px;
     color: black;
     font-weight:500;
@@ -66,13 +72,13 @@ body{
 .titleClass{
 font-size: 35px;
 padding-bottom: 5px;
-color: #004b64;
-border-bottom: 3px solid #b9c8ce;;
+color: var(--tertiary-color);
+border-bottom: 3px solid var(--secondary-color);;
 }
 .headerClass{
     font-size: 25px;
-    color: #004b64;
-    border-bottom: 3px solid #b9c8ce;;
+    color: var(--tertiary-color);
+    border-bottom: 3px solid var(--secondary-color);;
     }
 
 #startButton{
@@ -107,7 +113,7 @@ border-bottom: 3px solid #b9c8ce;;
     text-align: left;
     color:rgb(18, 128, 8);
     background-color: rgba(233, 232, 232, 0.582);
-    border: 2px solid #747e81;
+    border: 2px solid var(--primary-color);
 }
 
 #choiceButtons{
@@ -143,7 +149,7 @@ border-bottom: 3px solid #b9c8ce;;
 }
 /*---Finish Card---*/
 #finishCard {
-    color: #004b64;
+    color: var(--tertiary-color);
     font-weight: bold;
     font-size: 25px;
 }
@@ -274,8 +280,14 @@ border-bottom: 3px solid #b9c8ce;;
         }
         .submitButton{
             margin-top: 25px;
-            padding: 20px 30vw 20px 30vw;
+            padding: 16px 30vw 16px 30vw;
             font-size: 20px;
+        }
+        #result{
+            position: fixed;
+            top: 0px;
+            left: 80vw;
+            font-size: 14px;
         }
 
         
