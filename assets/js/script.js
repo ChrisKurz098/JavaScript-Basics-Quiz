@@ -54,7 +54,7 @@ function initQuestions() {
         },
         {
             question: "How would we change the color of the font for 'textEl'?",
-            code: "let textEl =  document.getElementById(“textBox”);",
+            code: "let textEl = document.getElementById(“textBox”);",
             choiceA: "color: red",
             choiceB: "textEl.color",
             choiceC: "textEl.style.color",
