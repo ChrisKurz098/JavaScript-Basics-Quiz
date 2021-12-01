@@ -83,6 +83,7 @@ border-bottom: 3px solid #b9c8ce;;
 #question{
     display:flex; 
     flex-wrap: wrap;
+    
     justify-content: center;
     align-items:center;
     flex-direction: column;
@@ -232,3 +233,77 @@ border-bottom: 3px solid #b9c8ce;;
     }
     
 }
+
+/*-------------Media Queries----------------*/
+
+
+
+/*phone Scrren*/
+@media screen and (max-width: 768px){
+    #questionText {
+        font-size: 25px;
+    }
+    #codeText {
+        max-width: 300px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .btn {
+        font-size: 16px;
+        min-width: 313px;
+        font-weight: bold;
+        }
+
+        #topList{
+            font-size: 28px;
+        }
+
+        #finishCard{
+            font: 20;
+        }
+
+        .userInputForm{
+            border: none;
+            border-top:5px solid rgb(16, 255, 8);
+            border-radius: 0px;
+        }
+        #inputFeild{
+            margin-top: 20px;
+          padding: 15px 150px 15px 150px;
+        }
+        .submitButton{
+            margin-top: 25px;
+            padding: 20px 30vw 20px 30vw;
+            font-size: 20px;
+        }
+
+        
+    }
+
+
+    /*very small phone Scrren*/
+@media screen and (max-width: 375px){
+    #questionText {
+        font-size: 21px;
+    }
+    #codeText {
+        min-width: 359px;
+        margin-left: 0px;
+        padding-left: 1px;
+    }
+    .btn {
+        font-size: 16px;
+        min-width: 313px;
+        font-weight: bold;
+        }
+
+      
+        #topList{
+            font-size: 28px;
+        }
+
+       
+        
+    }
+
+    

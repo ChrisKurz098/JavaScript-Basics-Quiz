@@ -36,7 +36,7 @@ function initQuestions() {
         },
         {
             question: "What syntax can we use to identify this HTML element in JS?",
-            code: "<div id = “divElement”> Here is a Div element </div>",
+            code: "<div id = “divElement”>\n Here is a Div element \n</div>",
             choiceA: "html.divElement",
             choiceB: "document.getElementsByClass('divElement')",
             choiceC: ".divElement",
@@ -111,14 +111,14 @@ function initQuestions() {
             code: "",
             choiceA: "Saved to an HTML doc",
             choiceB: "Saved to a server",
-            choiceC: "Available on any computer the user is log in to",
+            choiceC: "Available on any computer the user logs in to",
             choiceD: "Available only on the computer it was saved on",
             correct: "D"
         },
         {
             question: "What syntax is used to run a function on a mouse click?",
             code: "",
-            choiceA: "EventTarget.addEventListener(“click”,function())",
+            choiceA: "Element.addEventListener(“click”,function())",
             choiceB: "Eventtarget.mouseClick = true",
             choiceC: "if (click == true)",
             choiceD: "onMouseClick.function()",
