@@ -509,7 +509,7 @@ function askForName(newScore, element,checkScore) {
         repeat for numChange amount of times*/
         let numStart = 3; 
 
-        /*This is my wonky code for adding an array object to a arbitrary spot in the array 
+        /*This is my code for adding an array object to a arbitrary spot in the array 
         then pushing all the array elements down one by changing their values to the values of the object above them
         until we reach the index of the players score position*/
         for (i = 0; i<numChange;i++){

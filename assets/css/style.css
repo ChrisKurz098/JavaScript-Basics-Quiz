@@ -64,7 +64,7 @@ body{
     border-radius: 11px;
     font-size: 35px;
     color: var(--tertiary-color);
-    margin: 40px 20vw 0px 20vw;
+    margin: 40px 20vw 30px 20vw;
 }
 
 .topPlayer{
@@ -173,7 +173,7 @@ border-bottom: 3px solid var(--secondary-color);;
     justify-content: center;
     text-align: center;
     flex-wrap: wrap;
-    animation: upFromBottom 1s ;
+    animation: fromRight 1s ;
     
 }
 
@@ -233,9 +233,11 @@ border-bottom: 3px solid var(--secondary-color);;
     }
 }
 
-@keyframes upFromBottom {
+@keyframes fromRight {
     from {
-        transform: translate(1000px);
+        margin-bottom: -40vh;
+        transform:  translate(200vw);
+        
     }
 }
 
@@ -259,6 +261,8 @@ border-bottom: 3px solid var(--secondary-color);;
     }
     
 }
+
+
 
 /*-------------Media Queries----------------*/
 
