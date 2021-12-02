@@ -151,7 +151,7 @@ border-bottom: 3px solid var(--secondary-color);;
 }
 
 .btn:hover{
-    color: royalblue;
+    color: rgb(69, 94, 170);
     background-color: #ffff;
 }
 
@@ -285,6 +285,11 @@ border-bottom: 3px solid var(--secondary-color);;
         width: 100vw;
         min-height: 65px;
         font-weight: bold;
+        }
+
+        .btn:hover{
+            background-color: rgb(69, 94, 170);
+            color: #ffff;
         }
 
         #topList{
