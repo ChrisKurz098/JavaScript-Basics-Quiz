@@ -113,7 +113,7 @@ function initQuestions() {
         {
             question: "What syntax is used to run a function on a mouse click?",
             code: "",
-            choiceA: "Element.addEventListener(“click”,function())",
+            choiceA: "Element.addEventListener(“click”,function)",
             choiceB: "Eventtarget.mouseClick = true",
             choiceC: "if (click == true)",
             choiceD: "onMouseClick.function()",
@@ -216,7 +216,7 @@ function startQuiz(questionArray) {
     document.getElementById("topList").style.display = "none";
     document.getElementById("quizCard").style.display = "block";
     let numCorrect = 0; //the number of correct answers
-    let time = 240;
+    let time = 300;
     let timerDisplay = document.getElementById("timerDisplay");
     timerDisplay.textContent = "Time: " + time;
 
@@ -250,21 +250,30 @@ function startQuiz(questionArray) {
         }
 
     }, 1000);
+
+    //set timer elemnt to animate pulse red
     timerDisplay.style.animation = "colorPulseRed .5s linear .5s infinite alternate";
 
+    //prevents click so people cant chat and click through quickly for a max time bonus
     runQuestions(questionArray, 0);
+
     ///////////////Displays the questions and choices and waits for input
     function runQuestions(array, questionNum) {
-
-        /*for some reason you can't just remove an animation then add it 
-        again to repeat the animation. You have to add a pause somehow then remove the animation
-         then add the animation and it will run again. I did this with setInterval. It doesnt even have wait 
-         for as long as you set the animation duration but it will cut it sgort if its less */
+        
+        /*can't just remove an animation then add it again to repeat the animation. JS is too fast.
+         You have to add a pause somehow then remove the animation
+         then add the animation to it run again. I did this with setInterval. It doesnt even have wait 
+         for as long as you set the animation duration but it will cut it short if its less. 
+         Used this opportunity to add a delay on clicks to prevent cheaters!!! */
         let resetAnimation = setInterval(function () {
+            
             questionEl.style.animation = "none";
             codeEl.style.animation = "none";
+            //allows cloicks again
+            quizCard.style = "pointer-events: auto";
+
             clearInterval(resetAnimation);
-        }, 300);
+        }, 1700);
 
 
 
@@ -301,6 +310,8 @@ function startQuiz(questionArray) {
         //listen for button click then run check function
 
         buttonsEl.addEventListener("pointerup", function checkAnswer(event) {
+            //disable anymore clicks until time at start of function finishes. Prevents cheaters
+            quizCard.style = "pointer-events: none";
 
             //remove event listener so that when the function runs again, the event listsner isn't duplicated
             buttonsEl.removeEventListener("pointerup", checkAnswer);
