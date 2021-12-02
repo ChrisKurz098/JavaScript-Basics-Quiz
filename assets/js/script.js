@@ -234,6 +234,8 @@ function startQuiz(questionArray) {
 
     //randomize choice order
     let randomChoice = randomizeArray(array = [1, 2, 3, 4]);
+
+    ///is there a way to use the parent element to get each child via for loop?
     choiceA.style.order = randomChoice[0];
     choiceB.style.order = randomChoice[1];
     choiceC.style.order = randomChoice[2];
@@ -269,22 +271,13 @@ function startQuiz(questionArray) {
             
             questionEl.style.animation = "none";
             codeEl.style.animation = "none";
-            //allows cloicks again
-            quizCard.style = "pointer-events: auto";
+            //allows click again
+            //Had to remove this feature due to glitch
+            // quizCard.style = "pointer-events: auto";
 
             clearInterval(resetAnimation);
-        }, 1700);
+        }, 300);
 
-
-
-        //if we have passed the last question, go to finishCard and return from function
-        if (questionNum > array.length - 1) {
-            timerDisplay.style.animation = "none";
-
-            clearInterval(timer);
-            drawFinishCard(true, time, numCorrect);
-            return;
-        }
 
         ///Hide code element if no code
         if (array[questionNum].code === "") {
@@ -311,7 +304,11 @@ function startQuiz(questionArray) {
 
         buttonsEl.addEventListener("pointerup", function checkAnswer(event) {
             //disable anymore clicks until time at start of function finishes. Prevents cheaters
-            quizCard.style = "pointer-events: none";
+
+            /*Had to disable this feature. Cased a glitch that would make the eventListener run again after the last code
+            not sure why. Need to further reaseredh how to clear the state of the pointer maybe. ??*/
+
+            // quizCard.style = "pointer-events: none";
 
             //remove event listener so that when the function runs again, the event listsner isn't duplicated
             buttonsEl.removeEventListener("pointerup", checkAnswer);
@@ -326,9 +323,7 @@ function startQuiz(questionArray) {
                 result.style.color = "green";
                 questionEl.style.animation = "pushCardLeft .2s";
 
-                runQuestions(array, questionNum);
-
-                return;
+                checkForLastQuestion(time,numCorrect,timerDisplay,timer,array,questionNum);
 
             }
             else {
@@ -337,20 +332,40 @@ function startQuiz(questionArray) {
                 result.textContent = "Wrong";
                 result.style.color = "red";
                 questionEl.style.animation = "pushCardLeft .2s";
-
-                runQuestions(array, questionNum);
-
-                return;
+                checkForLastQuestion(time,numCorrect,timerDisplay,timer,array,questionNum);
 
             }
 
         });
 
     }
+
+    /*wow, I almost messed up! This is a patch and must exist inside this scope.
+    Note: When looping a function,never put the code that checks if the function should end at the top of the function itself. 
+    Seems obv now.*/
+
+    //while this is still good advice, the problem seemed to be caused by pointer-event.
+    //Not sure how or why sop I removed the feature that used it
+
+    //this is called after each question is answered and the score is calculated. It checks if the game has ended.
+    function checkForLastQuestion(time,numCorrect,timerDisplay,timer,array,questionNum){
+        
+        if (questionNum > array.length - 1) {
+           timerDisplay.style.animation = "none";
+
+           clearInterval(timer);
+           drawFinishCard(true, time, numCorrect);
+               
+           }
+           else{
+               runQuestions(array, questionNum);
+           }
+}
 }
 
 ////Print  results to screan
 function drawFinishCard(completed, score, numCorrect) {
+    
     const element = document.getElementById("finishCard");
     element.style.display = "block";
     document.getElementById("startCard").style.display = "none";
@@ -382,20 +397,23 @@ function drawFinishCard(completed, score, numCorrect) {
     }
     else {
         finishEl.textContent = "Sorry, but your time ran out!"
-        return;
+        
     }
 
     if (checkScore != undefined) {
         printScore.style.animation = "colorPulseGreen .5s linear 0s infinite alternate";
         askForName(finalScore, element, checkScore);
+   
     }
 
     document.getElementById("topList").style.display = "block";
     showHighScores();
 
+    
+    
+
 
 }
-
 
 
 ////////////////////////////////////////High Score Code////////////////////////////////////////
@@ -406,7 +424,7 @@ function initHighScore() {
     if (!checkIfHighScore) {
         let defaultScore = [{
             name: "Chris",
-            score: 450
+            score: 500
         },
         {
             name: "Joe",
@@ -438,7 +456,7 @@ function showHighScores(){
     document.getElementById("scoreDisplay3").textContent = scoreData[2].name + ':' + scoreData[2].score;
     document.getElementById("scoreDisplay4").textContent = scoreData[3].name + ':' + scoreData[3].score;
     document.getElementById("scoreDisplay5").textContent = scoreData[4].name + ':' + scoreData[4].score;
-    return
+    return;
 }
 /////////////////LOAD SCORE FUNCTION/////////////////////////////
 function loadHighScore() {
@@ -482,15 +500,26 @@ function askForName(newScore, element,checkScore) {
     inputFormEl.appendChild(submitBtn);
 
     inputFormEl.addEventListener("submit", function getNewUser() {
+        
         let newName = inputEl.value;
         let scoreList = loadHighScore();
-        for (i = checkScore; i<scoreList.length-1;i++){
+        /*Represents how many array items we need to change based of what rank the player got */
+        let numChange = scoreList.length-1-checkScore;
+        /*there are array indexes 0-4. we want to put [3] into [4], then [2] into [3] and so on
+        repeat for numChange amount of times*/
+        let numStart = 3; 
 
-            let oldName = scoreList[i].name;
-            let oldScore = scoreList[i].score;
-            let ii = i+1;
+        /*This is my wonky code for adding an array object to a arbitrary spot in the array 
+        then pushing all the array elements down one by changing their values to the values of the object above them
+        until we reach the index of the players score position*/
+        for (i = 0; i<numChange;i++){
+
+            let oldName = scoreList[numStart].name;
+            let oldScore = scoreList[numStart].score;
+            let ii = numStart+1;
             scoreList[ii].name = oldName;
             scoreList[ii].score = oldScore;
+            numStart--;
            
         }
 
